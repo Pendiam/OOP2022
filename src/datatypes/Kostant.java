@@ -14,7 +14,7 @@ public class Kostant {
         Scanner input = new Scanner(System.in);
         System.out.print("Enter the radius: ");
         float rad = input.nextFloat();
-        System.out.printf("The are of a circle with a radius of %f is %f ", rad, getArea(rad));
+        System.out.printf("The area of a circle with a radius of %f is %f ", rad, getArea(rad));
         input.close();
 
     }
