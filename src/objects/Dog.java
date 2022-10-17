@@ -23,11 +23,11 @@ public class Dog {
     public int getAgeInHumanYears() {
         int humanYears = 0; // local variable
 
-        if (age < 22) {
-            humanYears = 22 * age + 1;
+        if (age <= 2) {
+            humanYears = age * 11;
         }
 
-        humanYears = age + 31;
+        humanYears = 22 + ((age - 2) * 5);
 
         return humanYears;
     }
