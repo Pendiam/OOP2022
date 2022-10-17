@@ -15,7 +15,7 @@ public class DogDemo {
         
         Dog k = new Dog();
         k.name = "Simba";
-        k.breed = "German Shephard";
+        k.breed = "German Shepherd";
         k.age = 2;
 
         k.writeOutput();

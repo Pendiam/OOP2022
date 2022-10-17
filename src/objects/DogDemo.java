@@ -16,7 +16,7 @@ public class DogDemo {
 
         System.out.println("------- object two ------");
 
-        Dog k = new Dog("Simba", "German Shephard",2);
+        Dog k = new Dog("Simba", "German Shepherd",2);
         k.writeOutput();
 
 
