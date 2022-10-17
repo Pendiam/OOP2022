@@ -24,7 +24,7 @@ public class Dog {
     public void writeOutput() {
         System.out.println("Name: " + name);
         System.out.println("Breed: " + breed);
-        System.out.println("Age:" + age);
+        System.out.println("Age in calendar years: " + age);
         System.out.println("Age in human years: " + getAgeInHumanYears());
     }
 
