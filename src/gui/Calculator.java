@@ -85,5 +85,6 @@ class Calculator extends JFrame implements ActionListener {
 class answer4 {
   public static void main(String[] args) {
     Calculator p = new Calculator();
+    p.setVisible(true);
   }
 }
