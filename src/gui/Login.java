@@ -1,8 +1,15 @@
 package gui;
 
 import javax.swing.*;
+
+import db.DbConnect;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Login extends JFrame {
     private static JPanel panel = new JPanel();
@@ -111,10 +118,48 @@ public class Login extends JFrame {
     public static void loginButton(ActionEvent event) {
         String user = txtUser.getText();
         String pwd = new String(txtPass.getPassword());
-        System.out.println("Username: " + user);
-        System.out.println("Password: " + pwd);
-        // JOptionPane.showMessageDialog(null, "Success");
+        String uname = "", passkey = "";
+        char status = '\0';
 
+        if (user.length()>0 && pwd.length()>0) {
+
+            // Connect to database
+            try {
+                // create the connection object
+                Connection conn = DbConnect.getConnection();
+                if (conn != null) {
+                    String sql = "SELECT * FROM AUTH WHERE USERNAME = '" + user + "'";
+
+                    // create the statement object
+                    Statement stmt = conn.createStatement();
+                    // execute query
+                    ResultSet rs = stmt.executeQuery(sql);
+                    // retrieve data from resultset
+                    while (rs.next()) {
+                        uname = rs.getString(2);
+                        passkey = rs.getString(3);
+                        status = rs.getString(4).charAt(0);
+                    }
+
+                    if (user.compareTo(uname) == 0 && (pwd.compareTo(passkey) == 0) && status == 'Y') {
+                        JOptionPane.showMessageDialog(null, "Login Success");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Invalid username or password");
+                    }
+                }
+                conn.close();
+            }
+
+            catch (SQLException e) {
+                System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Fill in the username and password!");
+            txtUser.requestFocus();
+        }
+        
     }
 
 }
