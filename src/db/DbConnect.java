@@ -10,9 +10,9 @@ import java.sql.SQLException;
  * connection with Oracle DB.
  */
 public class DbConnect {
-    private static String dbUrl = "jdbc:oracle:thin:@41.89.129.240:1521/pdb1";
-    private static String dbUsername = "hr";
-    private static String dbPassword = "hr";
+    private static String dbUrl = Env.get("DB_URL");
+    private static String dbUsername = Env.get("DB_USER");
+    private static String dbPassword = Env.get("DB_PASS");
 
     /**
      * @return Connetion to the database
