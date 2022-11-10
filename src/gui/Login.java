@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 
 public class Login extends JFrame {
     private static JPanel panel = new JPanel();
@@ -60,34 +61,26 @@ public class Login extends JFrame {
 
         // add action listeners
         btnLogin.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                loginButton(e);
-
+                onlineLogin(e);
+                // offlineLogin(e);
             }
 
         });
-
         btnClear.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 clearButton(e);
-
             }
 
         });
-
         btnCancel.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 cancelButton(e);
-
             }
 
         });
@@ -109,19 +102,18 @@ public class Login extends JFrame {
         txtUser.setText(null);
         txtPass.setText(null);
         txtUser.requestFocus();
-
     }
 
     /**
      * @param event
      */
-    public static void loginButton(ActionEvent event) {
-        String user = txtUser.getText();
-        String pwd = new String(txtPass.getPassword());
+    public static void onlineLogin(ActionEvent event) {
+        String user = txtUser.getText().trim();
+        String pwd = new String(txtPass.getPassword()).trim();
         String uname = "", passkey = "";
         char status = '\0';
 
-        if (user.length()>0 && pwd.length()>0) {
+        if (user.length() > 0 && pwd.length() > 0) {
 
             // Connect to database
             try {
@@ -159,7 +151,28 @@ public class Login extends JFrame {
             JOptionPane.showMessageDialog(null, "Fill in the username and password!");
             txtUser.requestFocus();
         }
-        
+
     }
 
+    public static void offlineLogin(ActionEvent event) {
+        HashMap<String, String> credentials = new HashMap<String, String>();
+        credentials.put("sarah", "FluffyP0nie!");
+        credentials.put("arnold", "AloeVera?");
+        credentials.put("coolguy", "Swag;-)");
+
+        String user = txtUser.getText().trim();
+        String pwd = new String(txtPass.getPassword()).trim();
+        
+
+        if (user.length() > 0 && pwd.length() > 0 && credentials.size() > 0) {
+
+            if (credentials.containsKey(user) && credentials.containsValue(pwd)) {
+                JOptionPane.showMessageDialog(null, "Login Success");
+            } else {
+                JOptionPane.showMessageDialog(null, "Invalid username or password");
+            }
+
+        }
+
+    }
 }

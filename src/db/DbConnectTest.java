@@ -3,7 +3,7 @@ package db;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class Test {
+public class DbConnectTest {
     static Connection conn;
     public static void main(String[] args) {
 
