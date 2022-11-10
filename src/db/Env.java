@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class Env {
-    static final String filePath = new File("OOP2022/.env").getAbsolutePath();
+    static final String filePath = new File(".env").getAbsolutePath();
     public static String get(String key) {
 
         Properties env = new Properties();

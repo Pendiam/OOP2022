@@ -6,8 +6,8 @@ import java.sql.SQLException;
 
 /**
  * @author Peter Arnold
- * This class is used to create a JDBC 
- * connection with Oracle DB.
+ *         This class is used to create a JDBC
+ *         connection with Oracle DB.
  */
 public class DbConnect {
     private static String dbUrl = Env.get("DB_URL");
