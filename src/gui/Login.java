@@ -2,7 +2,7 @@ package gui;
 
 import javax.swing.*;
 
-import db.DbConnect;
+import leo.DbConnect;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -111,7 +111,7 @@ public class Login extends JFrame {
         String user = txtUser.getText().trim();
         String pwd = new String(txtPass.getPassword()).trim();
         String uname = "", passkey = "";
-        char status = '\0';
+        int status = 0;
 
         if (user.length() > 0 && pwd.length() > 0) {
 
@@ -120,7 +120,7 @@ public class Login extends JFrame {
                 // create the connection object
                 Connection conn = DbConnect.getConnection();
                 if (conn != null) {
-                    String sql = "SELECT * FROM AUTH WHERE USERNAME = '" + user + "'";
+                    String sql = "SELECT * FROM users WHERE USERNAME = '" + user + "'";
 
                     // create the statement object
                     Statement stmt = conn.createStatement();
@@ -130,10 +130,10 @@ public class Login extends JFrame {
                     while (rs.next()) {
                         uname = rs.getString(2);
                         passkey = rs.getString(3);
-                        status = rs.getString(4).charAt(0);
+                        status = rs.getInt(4);
                     }
 
-                    if (user.compareTo(uname) == 0 && (pwd.compareTo(passkey) == 0) && status == 'Y') {
+                    if (user.compareTo(uname) == 0 && (pwd.compareTo(passkey) == 0) && status == 1) {
                         JOptionPane.showMessageDialog(null, "Login Success");
                     } else {
                         JOptionPane.showMessageDialog(null, "Invalid username or password");
